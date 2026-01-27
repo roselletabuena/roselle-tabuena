@@ -70,24 +70,30 @@ export function Footer() {
   return (
     <footer className="mt-24 border-t border-zinc-100 px-0 py-4 dark:border-zinc-800">
       <div className="flex items-center justify-between">
-        <a href="https://github.com/roselletabuena" target="_blank">
-          <TextLoop className="text-xs text-zinc-500">
-            <span>© 2026 Roselle Tabuena.</span>
-            <span>Colossians 3:23</span>
-            <span>
-              Based on{' '}
-              <a
-                href="https://github.com/ibelick/nim"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-zinc-600 dark:hover:text-zinc-300"
-              >
-                Nim
-              </a>{' '}
-              by ibelick
-            </span>
-          </TextLoop>
-        </a>
+        <TextLoop className="text-xs text-zinc-500">
+          <span>
+            <a href="https://github.com/roselletabuena" target="_blank">
+              © 2026 Roselle Tabuena.
+            </a>
+          </span>
+          <span>
+            <a href="https://github.com/roselletabuena" target="_blank">
+              Colossians 3:23
+            </a>
+          </span>
+          <span>
+            Based on{' '}
+            <a
+              href="https://github.com/ibelick/nim"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-zinc-600 dark:hover:text-zinc-300"
+            >
+              Nim
+            </a>{' '}
+            by ibelick
+          </span>
+        </TextLoop>
         <div className="text-xs text-zinc-400">
           <ThemeSwitch />
         </div>
