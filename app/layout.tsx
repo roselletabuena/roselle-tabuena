@@ -4,6 +4,8 @@ import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
+import { WEBSITE_URL } from '@/lib/constants'
+import { JsonLd } from './json-ld'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -12,16 +14,53 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nim-fawn.vercel.app/'),
+  metadataBase: new URL(WEBSITE_URL),
   alternates: {
     canonical: '/',
   },
   title: {
-    default: 'Roselle Tabuena',
-    template: '%s | Nim',
+    default: 'Roselle Tabuena | Full Stack Developer',
+    template: '%s | Roselle Tabuena',
   },
   description:
-    'Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.',
+    'Roselle Tabuena - Full Stack Developer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
+  keywords: [
+    'Roselle Tabuena',
+    'full stack developer',
+    'React developer',
+    'Next.js developer',
+    'web developer',
+    'software engineer',
+    'TypeScript',
+    'portfolio',
+  ],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: WEBSITE_URL,
+    siteName: 'Roselle Tabuena',
+    title: 'Roselle Tabuena | Full Stack Developer',
+    description:
+      'Full Stack Developer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
+    images: [
+      {
+        url: `${WEBSITE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Roselle Tabuena - Full Stack Developer',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Roselle Tabuena | Full Stack Developer',
+    description:
+      'Full Stack Developer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
+    images: [`${WEBSITE_URL}/og-image.png`],
+    creator: '@roselletabuena',
+  },
+  authors: [{ name: 'Roselle Tabuena' }],
 }
 
 const geist = Geist({
@@ -41,6 +80,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <JsonLd />
+      </head>
       <body
         className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
       >
