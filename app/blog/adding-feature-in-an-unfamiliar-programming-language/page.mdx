@@ -7,34 +7,39 @@ tags: ["software-engineering", "learning", "ai-tools", "best-practices"]
 
 ## Introduction
 
-Being assigned to a feature in a programming language you’ve never worked with before can feel intimidating.  
-The expectations are the same—deliver quality code—but the syntax, tools, and patterns are unfamiliar.
+Being assigned to a feature in a programming language you’ve never worked with before can feel intimidating. 
+When AI coding assistants are available, it's tempting to simple accept the generated code and move on.
 
-So where do you start?
+But doing that raises an important question: 
 
+**Where do you actually start?**
 ---
 
 ## Follow Existing Patterns — But Question Them
+When working in an unfamiliar codebase, the most common instint is to follow existing patterns. Even coding AI assistants will do that for you.
 
-The first instinct is usually to follow the existing patterns in the codebase. This is often the right move since it reduces risk and keeps consistency.
-
-However, problems arise when:
+They mainly work most of the time but what if: 
 
 - The user story requires a **new pattern**
 - Existing patterns are **confusing or undocumented**
 - The code is written using **poor practices**
 
-Blindly copying existing code can slow you down or introduce technical debt. Patterns should guide you—not trap you.
+Blindly copying existing code can introduce technical debt or slow you down later.
+Patterns should **guide you**, not **trap you**.
+
 
 ---
 
 ## Can AI Coding Assistants Help?
 
-AI coding assistants are a huge help, especially during the familiarization phase. Syntax is rarely the real blocker. As long as you understand the foundations of programming, AI can help translate ideas into working code.
+AI coding assistants are incredibly helpful, especially during the familiarization phase.
+In today’s development environment, syntax is rarely the real blocker.
 
-That said, AI alone is **not enough**.
+As long as you understand the fundamentals of programming, AI can help translate ideas into working code.
 
-Selecting existing code and asking AI for help works only if you understand:
+That said, AI alone is not enough.
+
+Using AI effectively requires that you already understand:
 
 - The goal of the feature
 - The responsibilities of each layer
@@ -43,7 +48,25 @@ Selecting existing code and asking AI for help works only if you understand:
 Building features just to “make them work” with AI won’t help long-term.  
 Building features **with understanding**, assisted by AI, significantly boosts productivity.
 
-Also, tokens are limited and costly—use them on the right tasks.
+Also, tokens are limited and costly. Use them intentionally. Choose the right model for the right task, and avoid wasting context on things you could reason through yourself.
+
+
+---
+## A Practical Tip on AI-Generated Code
+
+If you're satifised with AI-generated code, don't immediate accept it. 
+
+AI is great at pattern recognition, which means it can generate correct-looking code faster than you can fully understant it. 
+
+Instead: 
+- Type the code yourself rather than auto-accepting it.
+- Switch to chat mode and why each part exists.
+- Make sure you understand every line. 
+
+As developers, we love convenience. But blindly accepting generated code often leads to future inconvience. 
+I've been trapped by this many times. For complex tasks, I prefer chat mode over agent mode. It slows me down and ensures I understand every line of the code. 
+
+Always remind youselves to deeply think to save time later. That way, if there's a problem with the generated code, you'll know exactly where to fix it.
 
 ---
 
@@ -55,9 +78,13 @@ Before writing code, take time to understand the repository at a high level:
 - How does data flow through the system?
 - Where does this feature belong?
 
-If the repository is part of a **data pipeline**, an accessible flowchart is critical. Developers shouldn’t need to reach out to others just to understand the flow.
+For tech leads and senior developers, having an **updated onboarding checklist** for each large project can be very helpful. Sometimes we forget to focus on these things because they may feel like they don’t add value.
+However, it improves consistency, speeds up onboarding, and reduces back-and-forth communication.
 
-If the repository is **frontend-focused**, shared configurations (such as VS Code settings or linters) help enforce consistency and reduce friction across the team.
+Some examples: 
+- Data pipelines: an accessible flowchart is critical—developers shouldn’t need to ask others just to understand the flow
+- Frontend repositories: shared configurations (VS Code settings, linters, formatting rules, copilot instructions) reduce friction
+- Backend services: clear scaffolding, folder structure, and setup expectations help developers move faster
 
 ---
 
@@ -103,17 +130,18 @@ Implementations often change due to hidden constraints or evolving requirements.
 
 Sometimes, the existing codebase contains poor practices.
 
-If improvements are low-risk, make them.  
-If changes are risky—especially when there are no unit tests—avoid copying the bad patterns.
+If improvements are low-risk, refactor them. There's still hope. Don't be discouraged by bad code; let it motivate you to write better code moving forward. 
+
+If changes are risky, especially when there are no unit test. Avoid copying the bad patterns.
 
 Instead:
 
-- Communicate clearly with the team
-- Explain why you’re not following certain implementations
-- Be consistent in messaging, especially in large teams
-- Review related PRs to avoid conflicting approaches
+- **Communicate clearly with your team** about the challenges you see.
+- **Explain why you’re not following certain implementations** and suggest alternatives.
+- **Be consistent in promoting the new pattern**, particularly in large teams. Consult with the original developers, and align if they agree with the new approach.
+- **Review related PRs** to prevent conflicting implementations.
 
-Not all legacy code should be treated as a standard.
+By balancing careful refactoring with clear communication, you can improve the codebase without introducing risk or confusion.
 
 ---
 
