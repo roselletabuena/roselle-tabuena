@@ -68,17 +68,10 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'Alignment Not Found – Debugging Agile Communication',
-    description: 'Lorem Ipsum',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
+    title: 'Adding a Feature in an Unfamiliar Programming Language: Where Do You Start?',
+    description: "A practical guide on building features in an unfamiliar language, using existing patterns, AI tools, and strong collaboration.",
+    link: '/blog/adding-feature-in-an-unfamiliar-programming-language',
     uid: 'blog-1',
-  },
-  {
-    title: 'Assigned to an Unfamiliar Tech Stack? Here’s Where to Start',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-2',
   }
 ]
 

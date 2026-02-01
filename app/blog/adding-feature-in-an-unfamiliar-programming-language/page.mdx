@@ -1,0 +1,128 @@
+---
+title: "Adding a Feature in an Unfamiliar Programming Language: Where Do You Start?"
+description: "A practical guide on building features in an unfamiliar language, using existing patterns, AI tools, and strong collaboration."
+date: 2026-01-27
+tags: ["software-engineering", "learning", "ai-tools", "best-practices"]
+---
+
+## Introduction
+
+Being assigned to a feature in a programming language you’ve never worked with before can feel intimidating.  
+The expectations are the same—deliver quality code—but the syntax, tools, and patterns are unfamiliar.
+
+So where do you start?
+
+---
+
+## Follow Existing Patterns — But Question Them
+
+The first instinct is usually to follow the existing patterns in the codebase. This is often the right move since it reduces risk and keeps consistency.
+
+However, problems arise when:
+
+- The user story requires a **new pattern**
+- Existing patterns are **confusing or undocumented**
+- The code is written using **poor practices**
+
+Blindly copying existing code can slow you down or introduce technical debt. Patterns should guide you—not trap you.
+
+---
+
+## Can AI Coding Assistants Help?
+
+AI coding assistants are a huge help, especially during the familiarization phase. Syntax is rarely the real blocker. As long as you understand the foundations of programming, AI can help translate ideas into working code.
+
+That said, AI alone is **not enough**.
+
+Selecting existing code and asking AI for help works only if you understand:
+
+- The goal of the feature
+- The responsibilities of each layer
+- How your change fits into the system
+
+Building features just to “make them work” with AI won’t help long-term.  
+Building features **with understanding**, assisted by AI, significantly boosts productivity.
+
+Also, tokens are limited and costly—use them on the right tasks.
+
+---
+
+## Context Matters More Than Syntax
+
+Before writing code, take time to understand the repository at a high level:
+
+- What problem does this service solve?
+- How does data flow through the system?
+- Where does this feature belong?
+
+If the repository is part of a **data pipeline**, an accessible flowchart is critical. Developers shouldn’t need to reach out to others just to understand the flow.
+
+If the repository is **frontend-focused**, shared configurations (such as VS Code settings or linters) help enforce consistency and reduce friction across the team.
+
+---
+
+## Define Inputs and Outputs Early
+
+Before building anything, always clarify the inputs and outputs.
+
+### Inputs
+
+Ask questions like:
+
+- What are the inputs?
+- Are there limitations or constraints?
+- What triggers this logic?
+- What is required vs optional?
+- Should this be optimized for performance, even if it sacrifices readability?
+
+### Outputs
+
+Then define:
+
+- What is the expected output?
+- Who consumes it?
+- What happens when something fails?
+
+Clear input and output definitions prevent rework and misalignment.
+
+---
+
+## Collaborate Early and Often
+
+When you’re new to a repository, following existing patterns is not enough.
+
+- Consult **before** building
+- Sync **during** implementation
+- Use code reviews for validation—not discovery
+
+Implementations often change due to hidden constraints or evolving requirements. Continuous communication ensures the solution stays on track.
+
+---
+
+## Dealing With Bad Existing Code
+
+Sometimes, the existing codebase contains poor practices.
+
+If improvements are low-risk, make them.  
+If changes are risky—especially when there are no unit tests—avoid copying the bad patterns.
+
+Instead:
+
+- Communicate clearly with the team
+- Explain why you’re not following certain implementations
+- Be consistent in messaging, especially in large teams
+- Review related PRs to avoid conflicting approaches
+
+Not all legacy code should be treated as a standard.
+
+---
+
+## Final Thoughts
+
+Working in an unfamiliar language is less about mastering syntax and more about understanding context, intent, and collaboration.
+
+Use existing patterns wisely.  
+Leverage AI responsibly.  
+Communicate early and often.
+
+That’s how you build features that last—no matter the language.
