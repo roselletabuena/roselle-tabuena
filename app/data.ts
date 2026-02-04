@@ -58,9 +58,9 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'Information Managers',
-    title: 'Junior Software Developer',
-    start: '2022',
-    end: '2024',
+    title: 'Junior Programmer',
+    start: '2021',
+    end: '2022',
     link: 'https://www.linkedin.com/in/roselletabuena/',
     id: 'work2',
   },
