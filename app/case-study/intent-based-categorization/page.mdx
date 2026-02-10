@@ -22,7 +22,7 @@ I was responsible for implementing the Tokenization and Integration layer. The i
 
 ## Approach
 
-I proposed for a shift from Bulk Processing to Parallelized Individual Processing. I proposed to the Technical Architect (TA) that if accuracy was the priority, we needed to treat documents more granularly.
+I proposed a shift from bulk processing to parallelized individual processing. I suggested to the Technical Architect (TA) that if accuracy was the priority, we needed to treat documents more granularly.
 
 **Parallelization:** Instead of one massive bulk request, I implemented concurrency control using the p-limit library to send 10 parallel API calls at a time. This "sweet spot" maximized without triggering 429 (Rate Limit) errors.
 
