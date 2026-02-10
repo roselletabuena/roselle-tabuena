@@ -1,0 +1,37 @@
+# Intent-Based Document Categorization
+
+## Context
+
+The enrichment involved implementing labeling tasks using a Document Categorization Service. By labeling documents with predefined categories based on user intent, this will improve relevant, "boosted" search results tailored to what the user is actually looking for.
+
+## Use Case
+
+When the user performs a search, the API identifies their intent and boosts documents labeled with that specific intent, ensuring the most relevant results appear at the top.
+
+## My Role
+
+I was responsible for implementing the Tokenization and Integration layer. The initial architecture was designed to process documents in large "bulk" array to maximize token limit. I managed the data structures (arrays of objects) and the logic for splitting documents to fit the model constraints.
+
+## Challenges
+
+**Reliability Issues:** Attempting to categorize 500 documents at once resulted in a 40% failure rate. Even with retries.
+
+**Accuracy Degradation:** Testing revealed a "sweet spot" of 100 documents, but bulk processing caused the model to lose nuance, often incorrectly assigning the same category to different types of documents.
+
+**Performance bottlenecks:** Increasing retries to fix failures made the API too slow for staging and production use.
+
+## Approach
+
+I proposed for a shift from Bulk Processing to Parallelized Individual Processing. I proposed to the Technical Architect (TA) that if accuracy was the priority, we needed to treat documents more granularly.
+
+**Parallelization:** Instead of one massive bulk request, I implemented concurrency control using the p-limit library to send 10 parallel API calls at a time. This "sweet spot" maximized without triggering 429 (Rate Limit) errors.
+
+**Optimization:** By processing one-by-one in parallel, we eliminated the need for complex bulk-recover logic.
+
+## Outcome
+
+**Speed:** Reduced average processing time for 25-28 seconds down to 12-18 seconds (a ~35% improvement).
+
+**Reliability:** Reduced the retry rate, ensuring we stayed well within the 30-second API Gateway timeout.
+
+**Accuracy:** Improved categorization by allowing model to focus on one document context at a time rather than a bulk prompt.

@@ -29,16 +29,16 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Enterprise Search',
+    name: 'Intent-Based Document Categorization',
     description:
-      'A large-scale web app application used by internal stakeholders. ',
-    link: '/project/enterprise-search',
+      'A prompt-based service that categorizes documents.',
+    link: '/case-study/intent-based-categorization',
     video:
       'https://images.unsplash.com/photo-1743796055664-3473eedab36e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     id: 'project1',
   },
   {
-    name: 'Innovations',
+    name: 'Code Standard across Multiple Teams',
     description: 'A collection of innovative projects that I have worked on.',
     link: '/project/innovation',
     video:
