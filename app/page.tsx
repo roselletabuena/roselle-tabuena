@@ -106,7 +106,7 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on building scalable components and features. I'm also interested in improving developer workflows and finding problems in our team to solve.
+            Full-Stack Software Engineer experienced in React, Node.js, Fastify, and AWS. I build scalable applications, optimize performance, and improve legacy systems, with work spanning frontend architecture and backend APIs. I focus on writing maintainable code while leveraging AI tools to enhance productivity.
           </p>
         </div>
       </motion.section>
