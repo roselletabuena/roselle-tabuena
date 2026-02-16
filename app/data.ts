@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Accenture PH',
+    company: 'Accenture in the Philippines',
     title: 'Software Engineer',
     start: 'Nov 2022',
     end: 'Present',

@@ -10,11 +10,11 @@ export function JsonLd() {
       'https://github.com/roselletabuena',
       'https://www.linkedin.com/in/roselletabuena',
     ],
-    jobTitle: 'Full Stack Developer',
+    jobTitle: 'Software Engineer',
     worksFor: [
       {
         '@type': 'Organization',
-        name: 'Accenture PH',
+        name: 'Accenture in the Philippines',
       },
     ],
     knowsAbout: [
@@ -31,7 +31,7 @@ export function JsonLd() {
       'AWS'
     ],
     description:
-      'Full Stack Developer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
+      'Software Engineer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
   }
 
   return (
