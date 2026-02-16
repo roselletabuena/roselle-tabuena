@@ -26,6 +26,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
     "sugar-high": "^0.9.3",
     "tailwind-merge": "^2.5.5"

@@ -2,7 +2,7 @@ type Project = {
   name: string
   description: string
   link: string
-  video: string
+  image: string
   id: string
 }
 
@@ -33,16 +33,16 @@ export const PROJECTS: Project[] = [
     description:
       'A prompt-based service that categorizes documents.',
     link: '/case-study/intent-based-categorization',
-    video:
-      'https://images.unsplash.com/photo-1743796055664-3473eedab36e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image:
+      'https://images.unsplash.com/photo-1527849214787-c99cd25c2f09?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     id: 'project1',
   },
   {
-    name: 'Code Standard across Multiple Teams',
-    description: 'A collection of innovative projects that I have worked on.',
-    link: '/project/innovation',
-    video:
-      'https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    name: 'AI Development with Copilot',
+    description: 'Enforced MUI and RWD standards via custom GitHub Copilot instructions, ensuring 100% architectural alignment.',
+    link: '/case-study/code-standards',
+    image:
+      'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=1488&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     id: 'project2',
   },
 ]
@@ -51,7 +51,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Accenture PH',
     title: 'Software Engineer',
-    start: '2022',
+    start: 'Nov 2022',
     end: 'Present',
     link: 'https://www.linkedin.com/in/roselletabuena/',
     id: 'work1',
@@ -59,8 +59,8 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Information Managers',
     title: 'Junior Programmer',
-    start: '2021',
-    end: '2022',
+    start: 'Jun 2021',
+    end: 'Nov 2022',
     link: 'https://www.linkedin.com/in/roselletabuena/',
     id: 'work2',
   },

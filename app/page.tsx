@@ -41,11 +41,11 @@ const TRANSITION_SECTION = {
   duration: 0.3,
 }
 
-type ProjectVideoProps = {
+type ProjectImageProps = {
   src: string
 }
 
-function ProjectVideo({ src }: ProjectVideoProps) {
+function ProjectImage({ src }: ProjectImageProps) {
   return (
     <div className="relative w-full aspect-video overflow-hidden rounded-xl">
       <Image
@@ -120,7 +120,7 @@ export default function Personal() {
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
+                <ProjectImage src={project.image} />
               </div>
               <div className="px-1">
                 <Link

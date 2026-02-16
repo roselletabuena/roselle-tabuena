@@ -1,0 +1,61 @@
+# Standardizing AI-Assisted Development with Github Copilot
+
+## Context
+
+In a large-scale environment with multiple Scrum teams contributing to a shared repository maintaining consistency is a challenge. Our team follows restrict requirement for Accessibility (A11y), Responsive Web Design (RWD), and standardized Material UI (MUI) implementation.
+
+## Problem 
+While GitHub Copilot increased our productivity, it introduced "consistency debt". Because Copilot learns from existing code, it frequently suggested legacy anti-patterns or generated manual CSS for layouts that should have been handled by MUI components. This led to bloated PRs and manual review cycles.
+
+## My Role
+
+I identified recurring inconsistencies in PRs and explored ways to reinforce coding standards through automation. Since the team was already using GitHub Copilot to enhance productivity, I proposed leveraging Copilot Instructions to guide code generation and reviews.
+
+## Challenges
+
+- **The Echo Chamber Effect:** Copilot mirrored legacy anti-patterns found in the codebase.
+- **Library Neglect:** AI often bypassed our MUI component library, recreating layouts from scratch.
+- **Platform Limitations:** Azure DevOps doesn't have automatic PR review feature like Github as of 2/17/2026.
+
+## Approach
+
+I researched and implemented a structured .github/copilot-instructions.md (and related configurations):
+
+<div style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}>
+
+| Instructions        | Purpose                                                                                                 |
+| :------------------ | :------------------------------------------------------------------------------------------------------ |
+| General             | Global standards across the tech stack.                                                                 |
+| Repository Specific | Enforcing the use of MUI components over custom CSS and adhering to specific project folder structures. |
+| Commit logic        | Standardizing commit messages format to ensure documented code.                                         |
+| Code Review         | Prompts to help developers self-review based on the standard of the specific repo.                      |
+
+</div>
+
+<style jsx>{`
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+  }
+  
+  table th,
+  table td {
+    padding: 0.75rem 1rem;
+  }
+`}</style>
+
+Knowledge Transfer (KT): I lead a team KT across scrum teams with total of 45 attendees. I emphasize the "Human-in-the-Loop" philosophy. The Golden Rule: Never commit code you do not fully understand.
+
+## Outcomes and Impact
+
+The implementation of these instructions transformed our workflow:
+
+- **Faster PR Cycles:** Team feedback indicated that code review dropped to an average of 30 minutes per PR.
+- **Enhanced Consistency:** A noticeable decrease in "custom CSS" bloat as Copilot began prioritizing MUI-native patterns.
+- **Standardized Quality:** Reduced back-and-forth during the review phase regarding basic naming and structural conventions.
+
+### Learnings
+
+- **The Optimization:** We discovered that including "Optimization" in the default instructions even we prompt to provide judgement cause the AI to over-engineer simple logic.
+- **Judgement vs. Automation:** I learned that instructions requiring judgement like (performance vs. readablity) are better suited for template prompt rather than Default System Instructions. This give developers control over when to optimize.
