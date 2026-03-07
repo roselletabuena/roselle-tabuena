@@ -1,16 +1,8 @@
 'use client'
 import { motion } from 'motion/react'
-import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import Image from 'next/image'
-import {
-  MorphingDialog,
-  MorphingDialogTrigger,
-  MorphingDialogContent,
-  MorphingDialogClose,
-  MorphingDialogContainer,
-} from '@/components/ui/morphing-dialog'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
@@ -19,8 +11,8 @@ import {
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
+  CERTIFICATIONS,
 } from './data'
-
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -47,13 +39,8 @@ type ProjectImageProps = {
 
 function ProjectImage({ src }: ProjectImageProps) {
   return (
-    <div className="relative w-full aspect-video overflow-hidden rounded-xl">
-      <Image
-        src={src}
-        alt="Project Image"
-        fill
-        className="object-cover"
-      />
+    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+      <Image src={src} alt="Project Image" fill className="object-cover" />
     </div>
   )
 }
@@ -106,7 +93,11 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Full-Stack Software Engineer experienced in React, Node.js, Fastify, and AWS. <br></br> <br></br> I build scalable applications, optimize performance, and improve legacy systems, with work spanning frontend architecture and backend APIs. I focus on writing maintainable code while leveraging AI tools to enhance productivity.
+            Full-Stack Software Engineer experienced in React, Node.js, Fastify,
+            and AWS. <br></br> <br></br> I build scalable applications, optimize
+            performance, and improve legacy systems, with work spanning frontend
+            architecture and backend APIs. I focus on writing maintainable code
+            while leveraging AI tools to enhance productivity.
           </p>
         </div>
       </motion.section>
@@ -115,7 +106,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Case Studies</h3>
+        <h3 className="mb-3 text-lg font-medium">Case Studies</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
@@ -128,7 +119,7 @@ export default function Personal() {
                   href={project.link}
                 >
                   {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
                 </Link>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
@@ -173,6 +164,30 @@ export default function Personal() {
                 </div>
               </div>
             </a>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Certifications</h3>
+        <div className="flex flex-row">
+          {CERTIFICATIONS.map((certification) => (
+            <Link
+              key={certification.title}
+              className="-mx-3 px-5"
+              href={certification.link}
+              target="_blank"
+            >
+              <Image
+                src={certification.image}
+                width="120"
+                height={2}
+                alt={certification.title}
+              />
+            </Link>
           ))}
         </div>
       </motion.section>
