@@ -174,19 +174,13 @@ export default function Personal() {
       >
         <h3 className="mb-5 text-lg font-medium">Certifications</h3>
         <div className="flex flex-row">
-          {CERTIFICATIONS.map((certification) => (
-            <Link
-              key={certification.title}
-              className="-mx-3 px-5"
-              href={certification.link}
-              target="_blank"
-            >
-              <Image
-                src={certification.image}
-                width="120"
-                height={2}
-                alt={certification.title}
-              />
+          {CERTIFICATIONS.map(({ title, link, image }) => (
+            <Link key={title} className="group" href={link} target="_blank">
+              <div className="transform px-3 duration-800 group-hover:scale-110 group-hover:brightness-115">
+                <div className={`flex items-center justify-center`}>
+                  <Image src={image} alt={title} height={100} width={100} />
+                </div>
+              </div>
             </Link>
           ))}
         </div>
