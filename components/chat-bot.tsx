@@ -82,9 +82,6 @@ export function ChatBot() {
             {/* Header */}
             <div className="flex items-center justify-between border-b border-zinc-100 p-4 dark:border-zinc-900">
               <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
-                  <Bot className="h-5 w-5 text-zinc-600 dark:text-zinc-400" />
-                </div>
                 <div>
                   <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                     AI Assistant
