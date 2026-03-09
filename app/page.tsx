@@ -13,6 +13,7 @@ import {
   SOCIAL_LINKS,
   CERTIFICATIONS,
 } from './data'
+import { ChatBot } from '@/components/chat-bot'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -241,6 +242,7 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
+      <ChatBot />
     </motion.main>
   )
 }
