@@ -19,16 +19,15 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'Roselle Tabuena | Full Stack Developer',
+    default: 'Roselle Tabuena | Software Engineer',
     template: '%s | Roselle Tabuena',
   },
   description:
-    'Roselle Tabuena - Full Stack Developer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
+    'Roselle Tabuena - Software Engineer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
   keywords: [
     'Roselle Tabuena',
-    'full stack developer',
+    'Software Engineer',
     'React developer',
-    'Next.js developer',
     'web developer',
     'software engineer',
     'TypeScript',
@@ -39,24 +38,24 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: WEBSITE_URL,
     siteName: 'Roselle Tabuena',
-    title: 'Roselle Tabuena | Full Stack Developer',
+    title: 'Roselle Tabuena | Software Engineer',
     description:
-      'Full Stack Developer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
+      'Software Engineer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
     images: [
       {
         url: `${WEBSITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Roselle Tabuena - Full Stack Developer',
+        alt: 'Roselle Tabuena - Software Engineer',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Roselle Tabuena | Full Stack Developer',
+    title: 'Roselle Tabuena | Software Engineer',
     description:
-      'Full Stack Developer specializing in scalable components, modern web development, and building solutions to improve developer workflows.',
+      'Software Engineer specialized in React, Node.js, Fastify, and AWS. Expert in building scalable applications and optimizing legacy systems, with a strong focus on high-performance frontend architecture and backend APIs. Committed to writing maintainable code and leveraging AI-driven development tools to maximize productivity.',
     images: [`${WEBSITE_URL}/og-image.png`],
     creator: '@roselletabuena',
   },
