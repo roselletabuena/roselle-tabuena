@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { MessageCircle, Send, User, Bot, Minus } from 'lucide-react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface Message {
@@ -73,10 +73,10 @@ export function ChatBot() {
         {isOpen ? (
           <motion.div
             key="chat-window"
-            layoutId="chatbot"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="shadow-1xl flex h-[70vh] w-[90vw] max-w-[400px] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white sm:h-[500px] sm:w-[350px] sm:max-w-none dark:border-zinc-800 dark:bg-zinc-950"
           >
             {/* Header */}
@@ -182,8 +182,8 @@ export function ChatBot() {
         ) : (
           <motion.button
             key="chat-trigger"
-            layoutId="chatbot"
             onClick={() => setIsOpen(true)}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800 text-zinc-50 shadow-xl transition-all hover:scale-110 active:scale-95 dark:bg-zinc-100 dark:text-zinc-900"
           >
             <div className="absolute inset-0 rounded-full bg-zinc-800/20 blur-md transition-opacity group-hover:opacity-100 dark:bg-zinc-100/20" />
