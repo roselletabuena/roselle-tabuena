@@ -15,7 +15,9 @@ I was responsible for implementing the Tokenization and Integration layer. The i
 ## Challenges
 
 **Reliability Issues:** Attempting to categorize 500 documents at once resulted in a 40% failure rate. Even with retries.
+
 **Accuracy Degradation:** Testing revealed a "sweet spot" of 100 documents, but bulk processing caused the model to lose nuance, often incorrectly assigning the same category to different types of documents.
+
 **Performance bottlenecks:** Increasing retries to fix failures made the API too slow for staging and production use.
 
 ## Approach
