@@ -35,6 +35,7 @@ export interface Message {
   suggestedPrompts?: SuggestedPrompts
   uiWidget?: UIWidget
   timestamp: Date
+  avatarEmoji?: string
 }
 
 interface ChatContextValue {
@@ -43,6 +44,8 @@ interface ChatContextValue {
   isLoading: boolean
   error: string | null
   scrollRef: React.RefObject<HTMLDivElement | null>
+  selectedEmoji: string
+  setSelectedEmoji: (emoji: string) => void
   openChat: () => void
   closeChat: () => void
   sendMessage: (content: string) => Promise<void>
@@ -73,6 +76,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [selectedEmoji, setSelectedEmoji] = useState('🍗')
   const scrollRef = useRef<HTMLDivElement>(null)
   const isInitialized = useRef(false)
 
@@ -127,6 +131,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         id: `user-${Date.now()}`,
         role: 'user',
         content: content.trim(),
+        avatarEmoji: '🍗',
         timestamp: new Date(),
       }
 
@@ -166,7 +171,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         scrollToBottom()
       }
     },
-    [isLoading, messages, scrollToBottom],
+    [isLoading, messages, scrollToBottom, selectedEmoji],
   )
 
   return (
@@ -177,6 +182,8 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         error,
         scrollRef,
+        selectedEmoji,
+        setSelectedEmoji,
         openChat,
         closeChat,
         sendMessage,

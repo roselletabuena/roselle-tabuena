@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bot, Minus, RotateCcw } from 'lucide-react'
+import { Minus, RotateCcw } from 'lucide-react'
 import { useChatContext } from '@/context/ChatContext'
 
 export function ChatHeader() {
@@ -8,9 +8,12 @@ export function ChatHeader() {
   return (
     <div className="flex items-center justify-between border-b border-zinc-100 p-4 dark:border-zinc-900">
       <div className="flex items-center gap-3">
+        <div className="relative h-9 w-9 overflow-hidden rounded-full border border-zinc-200 dark:border-zinc-800">
+          <img src="/grizz-bot.png" alt="Grizz" className="h-full w-full object-cover" />
+        </div>
         <div>
           <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-            Grizz
+            GrizzlyBot
           </h3>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
             Powered by AWS Bedrock

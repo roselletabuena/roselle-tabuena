@@ -1,10 +1,60 @@
-import { Bot, User, Calendar, ExternalLink, Loader2, ChevronDown, ChevronUp, Copy, Check } from 'lucide-react'
+import { User, Calendar, ExternalLink, Loader2, ChevronDown, ChevronUp, Copy, Check } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import type { Message } from '@/context/ChatContext'
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { highlight } from 'sugar-high'
+
+const TOY_DETAILS: Record<string, { label: string; bg: string; border: string }> = {
+  // Chicken Emojis (Themed to match the minimalist portfolio style)
+  '🍗': {
+    label: 'Chicken Drumstick',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+  '🐔': {
+    label: 'Chicken Head',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+  '🐣': {
+    label: 'Hatching Chick',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+  '🐥': {
+    label: 'Baby Chick',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+  '🐓': {
+    label: 'Rooster',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+  // Legacy treats/toys (in case there are historical messages in localStorage)
+  '🦴': {
+    label: 'Bone',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+  '🎾': {
+    label: 'Tennis Ball',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+  '🥩': {
+    label: 'Steak',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+  '🧸': {
+    label: 'Squeaky Toy',
+    bg: 'bg-zinc-100 dark:bg-zinc-850',
+    border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none',
+  },
+}
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
@@ -120,16 +170,25 @@ export function ChatBubble({ message }: { message: Message }) {
       )}
     >
       {/* Avatar */}
-      <div
-        className={cn(
-          'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs',
-          isUser
-            ? 'bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900'
-            : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400',
-        )}
-      >
-        {isUser ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
-      </div>
+      {isUser ? (
+        <motion.div
+          initial={{ rotate: -45, scale: 0.3, y: 15 }}
+          animate={{ rotate: 0, scale: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 15 }}
+          className={cn(
+            'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-base border shadow-sm select-none',
+            (TOY_DETAILS[message.avatarEmoji || '🍗'] || { bg: 'bg-zinc-100 dark:bg-zinc-850', border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none' }).bg,
+            (TOY_DETAILS[message.avatarEmoji || '🍗'] || { bg: 'bg-zinc-100 dark:bg-zinc-850', border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none' }).border
+          )}
+          title={`Tossed a ${(TOY_DETAILS[message.avatarEmoji || '🍗'] || { label: 'Chicken Drumstick' }).label}`}
+        >
+          {message.avatarEmoji || '🍗'}
+        </motion.div>
+      ) : (
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs overflow-hidden bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 border border-zinc-200/50 dark:border-zinc-700/50">
+          <img src="/grizz-bot.png" alt="Grizz" className="h-full w-full object-cover" />
+        </div>
+      )}
 
       {/* Bubble */}
       <div

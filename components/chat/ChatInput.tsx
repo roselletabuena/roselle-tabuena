@@ -29,18 +29,22 @@ export function ChatInput() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={isLoading}
-          placeholder="Ask me anything..."
+          placeholder="Ask anything..."
           className="w-full rounded-full border border-zinc-200 bg-zinc-50 px-4 py-2 text-sm focus:border-zinc-500 focus:outline-none disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 dark:focus:border-zinc-600"
         />
         <button
           onClick={handleSend}
           disabled={!input.trim() || isLoading}
           aria-label="Send message"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-zinc-50 transition-colors hover:bg-zinc-700 disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-zinc-50 transition-colors hover:bg-zinc-700 disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 cursor-pointer"
         >
           <Send className="h-4 w-4" />
         </button>
       </div>
+      <p className="mt-2 text-center text-[12px] text-zinc-400 dark:text-zinc-500">
+        GrizzlyBot might bark up the wrong tree. Ask his owner to confirm!
+      </p>
     </div>
   )
 }
+

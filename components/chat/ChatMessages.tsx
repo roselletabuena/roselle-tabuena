@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { Bot } from 'lucide-react'
 import { ChatBubble } from './ChatBubble'
 import { SuggestedPrompts } from './SuggestedPrompts'
 import { useChatContext } from '@/context/ChatContext'
@@ -11,8 +10,8 @@ function TypingIndicator() {
       animate={{ opacity: 1, y: 0 }}
       className="flex w-full gap-2"
     >
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
-        <Bot className="h-4 w-4" />
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 overflow-hidden border border-zinc-200/50 dark:border-zinc-700/50">
+        <img src="/grizz-bot.png" alt="Grizz" className="h-full w-full object-cover" />
       </div>
       <div className="flex items-center gap-1 rounded-2xl bg-zinc-100 px-4 py-3 dark:bg-zinc-800">
         <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-zinc-400 dark:bg-zinc-500" />
