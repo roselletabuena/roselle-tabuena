@@ -1,11 +1,10 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { useChatContext } from '@/context/ChatContext'
 
 const SUGGESTED_PROMPTS = [
-  'What technologies do you specialise in?',
-  'Tell me about your work experience.',
-  'What are your AWS certifications?',
+  'What projects or achievements best demonstrate Roselle’s impact?',
+  'Is Roselle available for work, and what are her preferred setups?',
+  'What technologies and tools does Roselle specialize in?',
 ]
 
 export function SuggestedPrompts() {

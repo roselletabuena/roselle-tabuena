@@ -1,4 +1,5 @@
 const CHAT_API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL
+import { SuggestedPrompts } from '@/context/ChatContext'
 
 if (!CHAT_API_URL) {
   console.warn(
@@ -14,7 +15,7 @@ export interface ChatMessage {
 export async function getSuggestedPrompts(
   lastUserMessage: string,
   conversation: ChatMessage[],
-): Promise<Array<string>> {
+): Promise<SuggestedPrompts> {
   if (!CHAT_API_URL) {
     throw new Error('CHAT_API_URL is not configured')
   }
@@ -33,7 +34,7 @@ export async function getSuggestedPrompts(
 
   const data = await response.json()
 
-  return data || []
+  return data || undefined
 }
 
 export async function sendChatMessage(messages: ChatMessage[]) {

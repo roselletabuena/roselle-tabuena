@@ -17,11 +17,16 @@ import {
 /*  Types                                                               */
 /* ------------------------------------------------------------------ */
 
+export interface SuggestedPrompts {
+  intro: string
+  questions: Array<string>
+}
+
 export interface Message {
   id: string
   role: 'user' | 'assistant'
   content: string
-  suggestedPrompts?: Array<string>
+  suggestedPrompts?: SuggestedPrompts
   timestamp: Date
 }
 

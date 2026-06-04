@@ -2,12 +2,11 @@ import { Bot, User } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import type { Message } from '@/context/ChatContext'
+import { ChatFooter } from './ChatFooter'
+import React from 'react'
+import ReactMarkdown from 'react-markdown'
 
-interface ChatBubbleProps {
-  message: Message
-}
-
-export function ChatBubble({ message }: ChatBubbleProps) {
+export function ChatBubble({ message }: { message: Message }) {
   const isUser = message.role === 'user'
 
   return (
@@ -40,7 +39,62 @@ export function ChatBubble({ message }: ChatBubbleProps) {
             : 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100',
         )}
       >
-        {message.content}
+        <ReactMarkdown
+          components={{
+            strong: ({ node, ...props }) => (
+              <strong
+                className={cn(
+                  'font-bold',
+                  isUser
+                    ? 'text-white dark:text-zinc-950'
+                    : 'text-zinc-950 dark:text-white'
+                )}
+                {...props}
+              />
+            ),
+            a: ({ node, href, ...props }) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  'underline font-medium inline-flex items-center gap-0.5 transition-colors duration-200 hover:opacity-80',
+                  isUser
+                    ? 'text-blue-300 hover:text-blue-200 dark:text-blue-600 dark:hover:text-blue-800'
+                    : 'text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'
+                )}
+                {...props}
+              />
+            ),
+            p: ({ node, ...props }) => (
+              <p className="text-sm leading-relaxed mb-2 last:mb-0" {...props} />
+            ),
+            ul: ({ node, ...props }) => (
+              <ul className="list-disc pl-5 my-1.5 space-y-1" {...props} />
+            ),
+            ol: ({ node, ...props }) => (
+              <ol className="list-decimal pl-5 my-1.5 space-y-1" {...props} />
+            ),
+            li: ({ node, ...props }) => (
+              <li className="text-sm" {...props} />
+            ),
+            code: ({ node, ...props }) => (
+              <code
+                className={cn(
+                  'px-1.5 py-0.5 rounded font-mono text-xs',
+                  isUser
+                    ? 'bg-zinc-800 text-zinc-200 dark:bg-zinc-200 dark:text-zinc-800'
+                    : 'bg-zinc-200 text-zinc-800 dark:bg-zinc-700 dark:text-zinc-200'
+                )}
+                {...props}
+              />
+            ),
+          }}
+        >
+          {message.content}
+        </ReactMarkdown>
+
+        <ChatFooter message={message} />
       </div>
     </motion.div>
   )
