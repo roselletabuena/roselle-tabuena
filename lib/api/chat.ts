@@ -11,14 +11,37 @@ export interface ChatMessage {
   content: string
 }
 
-export async function sendChatMessage(
-  messages: ChatMessage[],
-): Promise<string> {
+export async function getSuggestedPrompts(
+  lastUserMessage: string,
+  conversation: ChatMessage[],
+): Promise<Array<string>> {
   if (!CHAT_API_URL) {
     throw new Error('CHAT_API_URL is not configured')
   }
 
-  const response = await fetch(CHAT_API_URL, {
+  const response = await fetch(CHAT_API_URL + 'portfolio/suggested-prompts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ conversation, lastUserMessage }),
+  })
+
+  if (!response.ok) {
+    throw new Error(`Chat API error: ${response.status} ${response.statusText}`)
+  }
+
+  const data = await response.json()
+
+  return data || []
+}
+
+export async function sendChatMessage(messages: ChatMessage[]) {
+  if (!CHAT_API_URL) {
+    throw new Error('CHAT_API_URL is not configured')
+  }
+
+  const response = await fetch(CHAT_API_URL + 'portfolio/chat', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

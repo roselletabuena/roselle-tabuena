@@ -7,7 +7,11 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { sendChatMessage, type ChatMessage } from '@/lib/api/chat'
+import {
+  sendChatMessage,
+  type ChatMessage,
+  getSuggestedPrompts,
+} from '@/lib/api/chat'
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                               */
@@ -17,6 +21,7 @@ export interface Message {
   id: string
   role: 'user' | 'assistant'
   content: string
+  suggestedPrompts?: Array<string>
   timestamp: Date
 }
 
@@ -45,7 +50,8 @@ const ChatContext = createContext<ChatContextValue | null>(null)
 const INITIAL_MESSAGE: Message = {
   id: 'init',
   role: 'assistant',
-  content: "Hi! I'm Roselle's AI assistant. How can I help you today?",
+  content:
+    'Hi! I’m Roselle’s AI assistant 👋 Want to explore her projects, tech stack, or recent achievements? Just ask!',
   timestamp: new Date(),
 }
 
@@ -57,7 +63,6 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = useCallback(() => {
-    // Use a short RAF so the DOM has time to paint the new message first
     requestAnimationFrame(() => {
       if (scrollRef.current) {
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight
@@ -85,7 +90,6 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       setError(null)
       scrollToBottom()
 
-      // Build the history the API expects (exclude the initial greeting)
       const history: ChatMessage[] = messages
         .filter((m) => m.id !== 'init')
         .map(({ role, content }) => ({ role, content }))
@@ -93,12 +97,16 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       history.push({ role: 'user', content: content.trim() })
 
       try {
-        const reply = await sendChatMessage(history)
+        const [reply, suggestedPrompts] = await Promise.all([
+          sendChatMessage(history),
+          getSuggestedPrompts(content, history),
+        ])
 
         const assistantMessage: Message = {
           id: `assistant-${Date.now()}`,
           role: 'assistant',
           content: reply,
+          suggestedPrompts,
           timestamp: new Date(),
         }
 
@@ -133,10 +141,6 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     </ChatContext.Provider>
   )
 }
-
-/* ------------------------------------------------------------------ */
-/*  Hook                                                                */
-/* ------------------------------------------------------------------ */
 
 export function useChatContext(): ChatContextValue {
   const ctx = useContext(ChatContext)

@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import { MessageCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChatProvider, useChatContext } from '@/context/ChatContext'
@@ -8,10 +7,6 @@ import { ChatHeader } from '@/components/chat/ChatHeader'
 import { ChatMessages } from '@/components/chat/ChatMessages'
 import { SuggestedPrompts } from '@/components/chat/SuggestedPrompts'
 import { ChatInput } from '@/components/chat/ChatInput'
-
-/* ------------------------------------------------------------------ */
-/*  Inner widget — reads context, renders the window or the FAB        */
-/* ------------------------------------------------------------------ */
 
 function ChatWidget() {
   const { isOpen, openChat } = useChatContext()
@@ -26,7 +21,7 @@ function ChatWidget() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="flex h-[70vh] w-[90vw] max-w-[400px] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl sm:h-[500px] sm:w-[370px] sm:max-w-none dark:border-zinc-800 dark:bg-zinc-950"
+            className="flex h-[80vh] w-[95vw] max-w-[520px] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl sm:h-[580px] sm:w-[460px] sm:max-w-none dark:border-zinc-800 dark:bg-zinc-950"
           >
             <ChatHeader />
             <ChatMessages />
@@ -52,10 +47,6 @@ function ChatWidget() {
     </div>
   )
 }
-
-/* ------------------------------------------------------------------ */
-/*  Public export — wraps the widget in its own provider               */
-/* ------------------------------------------------------------------ */
 
 export function ChatBot() {
   return (

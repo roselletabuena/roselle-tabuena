@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { Bot } from 'lucide-react'
 import { ChatBubble } from './ChatBubble'
@@ -23,7 +22,13 @@ function TypingIndicator() {
   )
 }
 
-function ErrorBanner({ message, onDismiss }: { message: string; onDismiss: () => void }) {
+function ErrorBanner({
+  message,
+  onDismiss,
+}: {
+  message: string
+  onDismiss: () => void
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 6 }}

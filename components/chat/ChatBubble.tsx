@@ -1,4 +1,3 @@
-import React from 'react'
 import { Bot, User } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
@@ -15,7 +14,10 @@ export function ChatBubble({ message }: ChatBubbleProps) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className={cn('flex w-full gap-2', isUser ? 'flex-row-reverse' : 'flex-row')}
+      className={cn(
+        'flex w-full gap-2',
+        isUser ? 'flex-row-reverse' : 'flex-row',
+      )}
     >
       {/* Avatar */}
       <div
