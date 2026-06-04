@@ -47,17 +47,17 @@ export function SuggestedPrompts() {
   if (questions.length === 0) return null
 
   return (
-    <div className="flex flex-col items-end gap-1.5">
-      <span className="text-[12px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 px-0.5">
+    <div className="flex flex-col items-end gap-2.5">
+      <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 px-1">
         {introText}
       </span>
-      <div className="flex flex-wrap justify-end gap-1.5">
+      <div className="flex flex-wrap justify-end gap-2">
         {questions.map((prompt) => (
           <motion.div
             key={prompt}
-            whileHover={{ scale: 1.02, y: -0.5 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative overflow-hidden rounded-full bg-zinc-300/30 p-[1px] dark:bg-zinc-800/30"
+            whileHover={{ scale: 1.01, y: -0.5 }}
+            whileTap={{ scale: 0.97 }}
+            className="relative overflow-hidden rounded-full bg-zinc-200/50 p-[1px] dark:bg-zinc-800/30"
           >
             <Spotlight
               className="from-zinc-900 via-zinc-800 to-zinc-700 blur-xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
@@ -66,7 +66,7 @@ export function SuggestedPrompts() {
             <button
               disabled={isLoading}
               onClick={() => sendMessage(prompt)}
-              className="relative rounded-full bg-white px-3 py-1.5 text-right text-[13px] font-medium text-zinc-600 transition-colors hover:bg-zinc-50 disabled:opacity-50 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 cursor-pointer"
+              className="relative rounded-full bg-white px-4 py-2 text-right text-[13px] font-medium text-zinc-600 transition-colors hover:bg-zinc-50 disabled:opacity-50 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 cursor-pointer"
             >
               {prompt}
             </button>

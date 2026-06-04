@@ -95,10 +95,10 @@ function CalendarWidget({ url }: { url: string }) {
   const [iframeLoading, setIframeLoading] = useState(true)
 
   return (
-    <div className="mt-3 overflow-hidden rounded-xl border border-zinc-200/80 bg-white p-4 shadow-sm dark:border-zinc-700/80 dark:bg-zinc-900">
+    <div className="mt-3 overflow-hidden rounded-[20px] border border-zinc-100 bg-white p-5 shadow-[0_4px_12px_rgba(0,0,0,0.02)] dark:border-zinc-850 dark:bg-zinc-950">
       <div className="flex items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-          <Calendar className="h-5 w-5 animate-pulse" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200">
+          <Calendar className="h-5 w-5" />
         </div>
         <div className="flex-1 min-w-0">
           <h4 className="font-semibold text-sm text-zinc-900 dark:text-zinc-50">
@@ -116,7 +116,7 @@ function CalendarWidget({ url }: { url: string }) {
             setIsExpanded(!isExpanded)
             if (!isExpanded) setIframeLoading(true)
           }}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-zinc-50 shadow-sm transition-all hover:bg-zinc-800 active:scale-98 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+          className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-zinc-800 active:scale-95 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 cursor-pointer"
         >
           {isExpanded ? (
             <>
@@ -132,17 +132,17 @@ function CalendarWidget({ url }: { url: string }) {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-600 shadow-sm transition-all hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+          className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-4 py-2 text-xs font-semibold text-zinc-600 shadow-sm transition-all hover:bg-zinc-50 dark:border-zinc-750 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 cursor-pointer"
         >
           Open in New Tab <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </div>
 
       {isExpanded && (
-        <div className="relative mt-3 h-[380px] w-full overflow-hidden rounded-lg border border-zinc-200 bg-white dark:border-zinc-800">
+        <div className="relative mt-3 h-[380px] w-full overflow-hidden rounded-xl border border-zinc-100 bg-white dark:border-zinc-850">
           {iframeLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-50/50 dark:bg-zinc-900/50">
-              <Loader2 className="h-6 w-6 animate-spin text-zinc-400 dark:text-zinc-600" />
+              <Loader2 className="h-6 w-6 animate-spin text-zinc-400 dark:text-zinc-650" />
             </div>
           )}
           <iframe
@@ -165,7 +165,7 @@ export function ChatBubble({ message }: { message: Message }) {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       className={cn(
-        'flex w-full gap-2',
+        'flex w-full gap-3',
         isUser ? 'flex-row-reverse' : 'flex-row',
       )}
     >
@@ -177,15 +177,15 @@ export function ChatBubble({ message }: { message: Message }) {
           transition={{ type: 'spring', stiffness: 260, damping: 15 }}
           className={cn(
             'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-base border shadow-sm select-none',
-            (TOY_DETAILS[message.avatarEmoji || '🍗'] || { bg: 'bg-zinc-100 dark:bg-zinc-850', border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none' }).bg,
-            (TOY_DETAILS[message.avatarEmoji || '🍗'] || { bg: 'bg-zinc-100 dark:bg-zinc-850', border: 'border-zinc-200/80 dark:border-zinc-700/60 shadow-sm shadow-zinc-100/30 dark:shadow-none' }).border
+            (TOY_DETAILS[message.avatarEmoji || '🍗'] || { bg: 'bg-white dark:bg-zinc-900', border: 'border-zinc-100 dark:border-zinc-800/80 shadow-sm' }).bg,
+            (TOY_DETAILS[message.avatarEmoji || '🍗'] || { bg: 'bg-white dark:bg-zinc-900', border: 'border-zinc-100 dark:border-zinc-800/80 shadow-sm' }).border
           )}
           title={`Tossed a ${(TOY_DETAILS[message.avatarEmoji || '🍗'] || { label: 'Chicken Drumstick' }).label}`}
         >
           {message.avatarEmoji || '🍗'}
         </motion.div>
       ) : (
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs overflow-hidden bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 border border-zinc-200/50 dark:border-zinc-700/50">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full overflow-hidden border border-zinc-100 bg-white dark:border-zinc-800 dark:bg-zinc-900">
           <img src="/grizz-bot.png" alt="Grizz" className="h-full w-full object-cover" />
         </div>
       )}
@@ -193,10 +193,10 @@ export function ChatBubble({ message }: { message: Message }) {
       {/* Bubble */}
       <div
         className={cn(
-          'max-w-[80%] rounded-2xl px-4 py-2 text-sm leading-relaxed',
+          'max-w-[85%] rounded-[20px] px-5 py-3 text-sm leading-relaxed',
           isUser
-            ? 'bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900'
-            : 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100',
+            ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-950'
+            : 'bg-zinc-50 border border-zinc-100/80 text-zinc-900 dark:border-zinc-800/85 dark:bg-zinc-900 dark:text-zinc-100',
         )}
       >
         <ReactMarkdown
@@ -204,9 +204,9 @@ export function ChatBubble({ message }: { message: Message }) {
             strong: ({ node, ...props }) => (
               <strong
                 className={cn(
-                  'font-bold',
+                  'font-semibold',
                   isUser
-                    ? 'text-white dark:text-zinc-950'
+                    ? 'text-white dark:text-black'
                     : 'text-zinc-950 dark:text-white'
                 )}
                 {...props}
@@ -220,8 +220,8 @@ export function ChatBubble({ message }: { message: Message }) {
                 className={cn(
                   'underline font-medium inline-flex items-center gap-0.5 transition-colors duration-200 hover:opacity-80',
                   isUser
-                    ? 'text-blue-300 hover:text-blue-200 dark:text-blue-600 dark:hover:text-blue-800'
-                    : 'text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'
+                    ? 'text-zinc-200 hover:text-white dark:text-zinc-800 dark:hover:text-black'
+                    : 'text-zinc-900 hover:text-black dark:text-white dark:hover:text-zinc-300'
                 )}
                 {...props}
               />
@@ -246,12 +246,12 @@ export function ChatBubble({ message }: { message: Message }) {
               if (isBlock) {
                 const highlighted = highlight(codeString)
                 return (
-                  <div className="relative my-2 w-full rounded-xl border border-zinc-200 bg-zinc-50 font-mono text-xs overflow-hidden dark:border-zinc-800 dark:bg-zinc-900">
-                    <div className="flex items-center justify-between border-b border-zinc-200 px-3 py-1.5 bg-zinc-100/50 text-[10px] text-zinc-500 font-semibold uppercase tracking-wider dark:border-zinc-800 dark:bg-zinc-950/50 dark:text-zinc-400">
+                  <div className="relative my-2 w-full rounded-[16px] border border-zinc-100 bg-zinc-50/70 font-mono text-xs overflow-hidden dark:border-zinc-850 dark:bg-zinc-900/50">
+                    <div className="flex items-center justify-between border-b border-zinc-100 px-4 py-2 bg-zinc-100/40 text-[10px] text-zinc-400 font-semibold uppercase tracking-wider dark:border-zinc-850 dark:bg-zinc-950/40 dark:text-zinc-500">
                       <span>{match ? match[1] : 'code'}</span>
                       <CopyButton text={codeString} />
                     </div>
-                    <pre className="p-3 overflow-x-auto whitespace-pre leading-relaxed">
+                    <pre className="p-4 overflow-x-auto whitespace-pre leading-relaxed">
                       <code
                         dangerouslySetInnerHTML={{ __html: highlighted }}
                         className="block"
@@ -267,7 +267,7 @@ export function ChatBubble({ message }: { message: Message }) {
                     'px-1.5 py-0.5 rounded font-mono text-xs',
                     isUser
                       ? 'bg-zinc-800 text-zinc-200 dark:bg-zinc-200 dark:text-zinc-800'
-                      : 'bg-zinc-200 text-zinc-800 dark:bg-zinc-700 dark:text-zinc-200'
+                      : 'bg-zinc-50 text-zinc-800 border border-zinc-100 dark:bg-zinc-800 dark:border-zinc-800 dark:text-zinc-200'
                   )}
                   {...props}
                 >

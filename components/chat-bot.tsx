@@ -20,7 +20,7 @@ function ChatWidget() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="flex h-[80vh] w-[95vw] max-w-[520px] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl sm:h-[580px] sm:w-[460px] sm:max-w-none dark:border-zinc-800 dark:bg-zinc-950"
+            className="flex h-[80vh] w-[95vw] max-w-[520px] flex-col overflow-hidden rounded-[24px] border border-zinc-100 bg-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] sm:h-[580px] sm:w-[460px] sm:max-w-none dark:border-zinc-900 dark:bg-zinc-950"
           >
             <ChatHeader />
             <ChatMessages />
