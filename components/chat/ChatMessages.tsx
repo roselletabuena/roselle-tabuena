@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Bot } from 'lucide-react'
 import { ChatBubble } from './ChatBubble'
+import { SuggestedPrompts } from './SuggestedPrompts'
 import { useChatContext } from '@/context/ChatContext'
 
 function TypingIndicator() {
@@ -57,6 +58,7 @@ export function ChatMessages() {
           <ChatBubble key={msg.id} message={msg} />
         ))}
         {isLoading && <TypingIndicator />}
+        <SuggestedPrompts />
       </div>
 
       {error && <ErrorBanner message={error} onDismiss={clearError} />}

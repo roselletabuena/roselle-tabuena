@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChatProvider, useChatContext } from '@/context/ChatContext'
 import { ChatHeader } from '@/components/chat/ChatHeader'
 import { ChatMessages } from '@/components/chat/ChatMessages'
-import { SuggestedPrompts } from '@/components/chat/SuggestedPrompts'
 import { ChatInput } from '@/components/chat/ChatInput'
 
 function ChatWidget() {
@@ -25,7 +24,6 @@ function ChatWidget() {
           >
             <ChatHeader />
             <ChatMessages />
-            <SuggestedPrompts />
             <ChatInput />
           </motion.div>
         ) : (

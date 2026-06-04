@@ -4,6 +4,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from 'react'
@@ -14,7 +15,7 @@ import {
 } from '@/lib/api/chat'
 
 /* ------------------------------------------------------------------ */
-/*  Types                                                               */
+/*  Types                                                              */
 /* ------------------------------------------------------------------ */
 
 export interface SuggestedPrompts {
@@ -22,11 +23,17 @@ export interface SuggestedPrompts {
   questions: Array<string>
 }
 
+export interface UIWidget {
+  type: 'calendar'
+  url: string
+}
+
 export interface Message {
   id: string
   role: 'user' | 'assistant'
   content: string
   suggestedPrompts?: SuggestedPrompts
+  uiWidget?: UIWidget
   timestamp: Date
 }
 
@@ -39,6 +46,7 @@ interface ChatContextValue {
   openChat: () => void
   closeChat: () => void
   sendMessage: (content: string) => Promise<void>
+  resetChat: () => void
   clearError: () => void
 }
 
@@ -56,7 +64,7 @@ const INITIAL_MESSAGE: Message = {
   id: 'init',
   role: 'assistant',
   content:
-    'Hi! I’m Roselle’s AI assistant 👋 Want to explore her projects, tech stack, or recent achievements? Just ask!',
+    'Woof! I’m Grizz, Roselle’s AI assistant dog 🐾 Want to sniff out her projects, tech stack, or recent achievements? You can also ask me to set up a schedule! Bark at me anytime!',
   timestamp: new Date(),
 }
 
@@ -66,6 +74,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const isInitialized = useRef(false)
 
   const scrollToBottom = useCallback(() => {
     requestAnimationFrame(() => {
@@ -75,9 +84,40 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
     })
   }, [])
 
+  // Load from localStorage on mount (Client-side only)
+  useEffect(() => {
+    const saved = localStorage.getItem('portfolio_chat_messages')
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        const loadedMessages = parsed.map((m: any) => ({
+          ...m,
+          timestamp: new Date(m.timestamp),
+        }))
+        setMessages(loadedMessages)
+      } catch (e) {
+        console.error('Failed to parse chat messages', e)
+      }
+    }
+    isInitialized.current = true
+  }, [])
+
+  // Save to localStorage when messages change
+  useEffect(() => {
+    if (isInitialized.current) {
+      localStorage.setItem('portfolio_chat_messages', JSON.stringify(messages))
+    }
+  }, [messages])
+
   const openChat = useCallback(() => setIsOpen(true), [])
   const closeChat = useCallback(() => setIsOpen(false), [])
   const clearError = useCallback(() => setError(null), [])
+
+  const resetChat = useCallback(() => {
+    setMessages([INITIAL_MESSAGE])
+    localStorage.removeItem('portfolio_chat_messages')
+    setError(null)
+  }, [])
 
   const sendMessage = useCallback(
     async (content: string) => {
@@ -102,7 +142,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       history.push({ role: 'user', content: content.trim() })
 
       try {
-        const [reply, suggestedPrompts] = await Promise.all([
+        const [chatResponse, suggestedPrompts] = await Promise.all([
           sendChatMessage(history),
           getSuggestedPrompts(content, history),
         ])
@@ -110,7 +150,8 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         const assistantMessage: Message = {
           id: `assistant-${Date.now()}`,
           role: 'assistant',
-          content: reply,
+          content: chatResponse.answer,
+          uiWidget: chatResponse.uiWidget,
           suggestedPrompts,
           timestamp: new Date(),
         }
@@ -139,6 +180,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         openChat,
         closeChat,
         sendMessage,
+        resetChat,
         clearError,
       }}
     >

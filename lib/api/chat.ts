@@ -37,7 +37,15 @@ export async function getSuggestedPrompts(
   return data || undefined
 }
 
-export async function sendChatMessage(messages: ChatMessage[]) {
+export interface ChatResponse {
+  answer: string
+  uiWidget?: {
+    type: 'calendar'
+    url: string
+  }
+}
+
+export async function sendChatMessage(messages: ChatMessage[]): Promise<ChatResponse> {
   if (!CHAT_API_URL) {
     throw new Error('CHAT_API_URL is not configured')
   }
@@ -56,7 +64,12 @@ export async function sendChatMessage(messages: ChatMessage[]) {
 
   const data = await response.json()
 
-  if (data?.answer) return data.answer
+  if (data?.answer) {
+    return {
+      answer: data.answer,
+      uiWidget: data.uiWidget,
+    }
+  }
 
   throw new Error('Unexpected response format from chat API')
 }
