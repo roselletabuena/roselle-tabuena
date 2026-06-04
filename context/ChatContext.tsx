@@ -67,7 +67,7 @@ const INITIAL_MESSAGE: Message = {
   id: 'init',
   role: 'assistant',
   content:
-    'Woof! I’m Grizz, Roselle’s AI assistant dog 🐾 Want to sniff out her projects, tech stack, or recent achievements? You can also ask me to set up a schedule! Bark at me anytime!',
+    'Woof! I’m Grizz, Roselle’s AI assistant virtual pet 🐾 Want to sniff out her projects, tech stack, or recent achievements? You can also ask me to set up a schedule! Bark at me anytime!',
   timestamp: new Date(),
 }
 
