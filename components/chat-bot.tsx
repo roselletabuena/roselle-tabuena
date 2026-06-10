@@ -76,7 +76,7 @@ function ChatWidget() {
                   exit={{ opacity: 0, scale: 0.85, y: 10 }}
                   transition={{ duration: 0.3, ease: 'easeOut' }}
                   onClick={handleTeaserClick}
-                  className="absolute bottom-16 right-0 sm:bottom-0 sm:right-16 mr-0 sm:mr-3 flex items-center gap-2.5 rounded-[16px] border border-zinc-100 bg-white/95 p-2.5 shadow-[0_4px_16px_rgba(0,0,0,0.06)] backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/95 cursor-pointer w-[240px] sm:w-[260px] select-none group transition-all hover:scale-[1.01]"
+                  className="absolute bottom-16 right-0 sm:bottom-0 sm:right-16 mr-0 sm:mr-3 flex items-center gap-2.5 rounded-[16px] border border-zinc-100 bg-white/95 p-2.5 shadow-sm backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/95 cursor-pointer w-[240px] sm:w-[260px] select-none group transition-all hover:scale-[1.01]"
                 >
                   <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-900">
                     <img src="/grizz-bot.png" alt="Grizz" className="h-full w-full object-cover" />
@@ -103,9 +103,8 @@ function ChatWidget() {
             <button
               onClick={openChat}
               aria-label="Open AI chat assistant"
-              className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800 text-zinc-50 shadow-xl transition-all hover:scale-110 active:scale-95 dark:bg-zinc-100 dark:text-zinc-900"
+              className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800 text-zinc-50 shadow-md transition-all hover:scale-110 active:scale-95 dark:bg-zinc-100 dark:text-zinc-900"
             >
-              <div className="absolute inset-0 rounded-full bg-zinc-800/20 blur-md transition-opacity group-hover:opacity-100 dark:bg-zinc-100/20" />
               <MessageCircle className="relative h-6 w-6" />
               {showTeaser && (
                 <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5">
