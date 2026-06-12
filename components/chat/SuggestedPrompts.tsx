@@ -6,9 +6,9 @@ import { useChatContext } from '@/context/ChatContext'
 import { Spotlight } from '@/components/ui/spotlight'
 
 const INITIAL_SUGGESTED_PROMPTS = [
-  '🐶 Sniff out Roselle’s top projects and achievements',
-  '📅 Is Roselle available? (Help me schedule a chat)',
-  '🛠️ What technologies does Roselle specialize in?',
+  "Can you sniff out her recent projects? 🐶",
+  'Is Roselle available? (Help me schedule a chat) 📅',
+  'Is she available for new opportunities? 💻',
 ]
 
 export function SuggestedPrompts() {
@@ -48,7 +48,7 @@ export function SuggestedPrompts() {
 
   return (
     <div className="flex flex-col items-end gap-2.5">
-      <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 px-1">
+      <span className="px-1 text-[11px] font-semibold tracking-wider text-zinc-400 uppercase dark:text-zinc-500">
         {introText}
       </span>
       <div className="flex flex-wrap justify-end gap-2">
@@ -66,7 +66,7 @@ export function SuggestedPrompts() {
             <button
               disabled={isLoading}
               onClick={() => sendMessage(prompt)}
-              className="relative rounded-full bg-white px-4 py-2 text-right text-[13px] font-medium text-zinc-600 transition-colors hover:bg-zinc-50 disabled:opacity-50 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 cursor-pointer"
+              className="relative cursor-pointer rounded-full bg-white px-4 py-2 text-right text-[13px] font-medium text-zinc-600 transition-colors hover:bg-zinc-50 disabled:opacity-50 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900"
             >
               {prompt}
             </button>
