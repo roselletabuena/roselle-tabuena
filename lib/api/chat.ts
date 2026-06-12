@@ -1,11 +1,4 @@
-const CHAT_API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL
 import { SuggestedPrompts } from '@/context/ChatContext'
-
-if (!CHAT_API_URL) {
-  console.warn(
-    'Warning: NEXT_PUBLIC_CHAT_API_URL is not defined in environment variables.',
-  )
-}
 
 export interface ChatMessage {
   role: 'user' | 'assistant'
@@ -16,11 +9,7 @@ export async function getSuggestedPrompts(
   lastUserMessage: string,
   conversation: ChatMessage[],
 ): Promise<SuggestedPrompts> {
-  if (!CHAT_API_URL) {
-    throw new Error('CHAT_API_URL is not configured')
-  }
-
-  const response = await fetch(CHAT_API_URL + 'portfolio/suggested-prompts', {
+  const response = await fetch('/api/chat/suggested-prompts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,11 +35,7 @@ export interface ChatResponse {
 }
 
 export async function sendChatMessage(messages: ChatMessage[]): Promise<ChatResponse> {
-  if (!CHAT_API_URL) {
-    throw new Error('CHAT_API_URL is not configured')
-  }
-
-  const response = await fetch(CHAT_API_URL + 'portfolio/chat', {
+  const response = await fetch('/api/chat', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
