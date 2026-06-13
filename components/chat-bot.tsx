@@ -43,7 +43,7 @@ function ChatWidget() {
   }
 
   return (
-    <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end sm:right-10 sm:bottom-6">
+    <div className="fixed inset-x-4 bottom-4 z-50 flex flex-col items-stretch sm:left-auto sm:right-10 sm:bottom-6 sm:w-auto sm:items-end">
       <AnimatePresence mode="wait">
         {isOpen ? (
           <motion.div
@@ -52,7 +52,7 @@ function ChatWidget() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="flex h-[80vh] w-[95vw] max-w-[520px] flex-col overflow-hidden rounded-[24px] border border-zinc-100 bg-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] sm:h-[580px] sm:w-[460px] sm:max-w-none dark:border-zinc-900 dark:bg-zinc-950"
+            className="flex h-[80dvh] w-full flex-col overflow-hidden rounded-[24px] border border-zinc-100 bg-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] sm:h-[580px] sm:w-[460px] dark:border-zinc-900 dark:bg-zinc-950"
           >
             <ChatHeader />
             <ChatMessages />
