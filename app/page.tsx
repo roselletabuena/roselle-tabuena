@@ -95,13 +95,11 @@ export default function Personal() {
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
             Full-Stack Software Engineer with experience building enterprise
-            applications using React, Node.js, Fastify, and AWS. <br></br> <br></br> Currently
-            contributing as a member of a GenAI-native R&D team, working on
-            Enterprise Search initiatives and enterprise generative AI solutions to
-            help establish GenAI-first software delivery practices. <br></br> <br></br> My
-            experience spans frontend development, backend API development, and legacy
-            system modernization, with a focus on delivering maintainable and reliable
-            solutions.
+            application using React, Node.js, Fastify, and AWS. <br></br>{' '}
+            <br></br> Currently contributing as a member of a GenAI-native R&D
+            team, working on Enterprise Search initiatives and enterprise
+            generative AI solutions to help establish GenAI-first software
+            delivery practices.
           </p>
         </div>
       </motion.section>
