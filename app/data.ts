@@ -20,6 +20,7 @@ type BlogPost = {
   description: string
   link: string
   uid: string
+  date: string
 }
 
 type Certification = {
@@ -92,12 +93,21 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    title: 'Beyond the Gantimpala Sinag Award',
+    description:
+      'Reflections on receiving the Sinag Award and the lessons I learned from improving everyday work.',
+    link: '/blog/beyond-the-gatimpala-sinag-award',
+    uid: 'blog-2',
+    date: 'Jun 13, 2026',
+  },
+  {
     title:
       'Adding a Feature in an Unfamiliar Programming Language: Where Do You Start?',
     description:
       'A practical guide on building features in an unfamiliar language, using existing patterns, AI tools, and strong collaboration.',
     link: '/blog/adding-feature-in-an-unfamiliar-programming-language',
     uid: 'blog-1',
+    date: 'Jan 27, 2026',
   },
 ]
 
