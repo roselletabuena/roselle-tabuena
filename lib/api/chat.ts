@@ -35,11 +35,20 @@ export interface ChatResponse {
 }
 
 export async function sendChatMessage(messages: ChatMessage[]): Promise<ChatResponse> {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+
+  if (typeof window !== 'undefined') {
+    const visitorId = localStorage.getItem('portfolio_visitor_id')
+    if (visitorId) {
+      headers['x-visitor-id'] = visitorId
+    }
+  }
+
   const response = await fetch('/api/chat', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify({ messages }),
   })
 

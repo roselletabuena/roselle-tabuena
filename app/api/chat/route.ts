@@ -15,15 +15,21 @@ export async function POST(request: Request) {
 
     const body = await request.json()
 
-    // Ensure URL has a trailing slash for formatting
+    const visitorId = request.headers.get('x-visitor-id')
     const baseUrl = chatApiUrl.endsWith('/') ? chatApiUrl : `${chatApiUrl}/`
+
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'x-internal-api-key': apiKey,
+    }
+
+    if (visitorId) {
+      headers['x-visitor-id'] = visitorId
+    }
 
     const response = await fetch(`${baseUrl}portfolio/chat`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-internal-api-key': apiKey,
-      },
+      headers,
       body: JSON.stringify(body),
     })
 
