@@ -12,6 +12,7 @@ import {
   sendChatMessage,
   type ChatMessage,
   getSuggestedPrompts,
+  streamChatMessage,
 } from '@/lib/api/chat'
 
 /* ------------------------------------------------------------------ */
@@ -131,7 +132,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         id: `user-${Date.now()}`,
         role: 'user',
         content: content.trim(),
-        avatarEmoji: '🍗',
+        avatarEmoji: selectedEmoji,
         timestamp: new Date(),
       }
 
@@ -146,26 +147,67 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
 
       history.push({ role: 'user', content: content.trim() })
 
+      const assistantMessageId = `assistant-${Date.now()}`
+
+      // Create a placeholder assistant message that will be updated in chunks
+      const placeholderAssistantMessage: Message = {
+        id: assistantMessageId,
+        role: 'assistant',
+        content: '',
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, placeholderAssistantMessage])
+
+      let streamSuccess = false
       try {
-        const [chatResponse, suggestedPrompts] = await Promise.all([
-          sendChatMessage(history),
-          getSuggestedPrompts(content, history),
-        ])
-
-        const assistantMessage: Message = {
-          id: `assistant-${Date.now()}`,
-          role: 'assistant',
-          content: chatResponse.answer,
-          uiWidget: chatResponse.uiWidget,
-          suggestedPrompts,
-          timestamp: new Date(),
-        }
-
-        setMessages((prev) => [...prev, assistantMessage])
+        await streamChatMessage(history, (chunk) => {
+          if (chunk.type === 'token') {
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === assistantMessageId
+                  ? { ...m, content: m.content + chunk.text }
+                  : m
+              )
+            )
+            scrollToBottom()
+          } else if (chunk.type === 'guardrail') {
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === assistantMessageId
+                  ? { ...m, content: chunk.fallback }
+                  : m
+              )
+            )
+            scrollToBottom()
+          } else if (chunk.type === 'done') {
+            if (chunk.uiWidget || chunk.suggestedPrompts) {
+              setMessages((prev) =>
+                prev.map((m) =>
+                  m.id === assistantMessageId
+                    ? {
+                        ...m,
+                        uiWidget: chunk.uiWidget || m.uiWidget,
+                        suggestedPrompts: chunk.suggestedPrompts || m.suggestedPrompts,
+                      }
+                    : m
+                )
+              )
+              scrollToBottom()
+            }
+          }
+        })
+        streamSuccess = true
       } catch (err) {
-        const message =
-          err instanceof Error ? err.message : 'Something went wrong.'
-        setError(message)
+        const errorMsg = err instanceof Error ? err.message : 'Something went wrong.'
+        setError(errorMsg)
+        // Overwrite the placeholder with error text if we haven't typed anything
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantMessageId && !m.content
+              ? { ...m, content: 'Error loading stream.' }
+              : m
+          )
+        )
       } finally {
         setIsLoading(false)
         scrollToBottom()

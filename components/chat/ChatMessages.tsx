@@ -3,25 +3,6 @@ import { ChatBubble } from './ChatBubble'
 import { SuggestedPrompts } from './SuggestedPrompts'
 import { useChatContext } from '@/context/ChatContext'
 
-function TypingIndicator() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="flex w-full gap-3"
-    >
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full overflow-hidden border border-zinc-100 bg-white dark:border-zinc-800 dark:bg-zinc-900">
-        <img src="/grizz-bot.png" alt="Grizz" className="h-full w-full object-cover" />
-      </div>
-      <div className="flex items-center gap-1 rounded-[20px] border border-zinc-100/80 bg-zinc-50 px-5 py-3.5 dark:border-zinc-800/80 dark:bg-zinc-900">
-        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-zinc-400 dark:bg-zinc-500" />
-        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:0.2s] dark:bg-zinc-500" />
-        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:0.4s] dark:bg-zinc-500" />
-      </div>
-    </motion.div>
-  )
-}
-
 function ErrorBanner({
   message,
   onDismiss,
@@ -48,7 +29,7 @@ function ErrorBanner({
 }
 
 export function ChatMessages() {
-  const { messages, isLoading, error, scrollRef, clearError } = useChatContext()
+  const { messages, error, scrollRef, clearError } = useChatContext()
 
   return (
     <>
@@ -56,7 +37,6 @@ export function ChatMessages() {
         {messages.map((msg) => (
           <ChatBubble key={msg.id} message={msg} />
         ))}
-        {isLoading && <TypingIndicator />}
         <SuggestedPrompts />
       </div>
 
