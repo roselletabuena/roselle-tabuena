@@ -9,9 +9,7 @@ import React, {
   useState,
 } from 'react'
 import {
-  sendChatMessage,
   type ChatMessage,
-  getSuggestedPrompts,
   streamChatMessage,
 } from '@/lib/api/chat'
 
@@ -180,20 +178,7 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
             )
             scrollToBottom()
           } else if (chunk.type === 'done') {
-            if (chunk.uiWidget || chunk.suggestedPrompts) {
-              setMessages((prev) =>
-                prev.map((m) =>
-                  m.id === assistantMessageId
-                    ? {
-                        ...m,
-                        uiWidget: chunk.uiWidget || m.uiWidget,
-                        suggestedPrompts: chunk.suggestedPrompts || m.suggestedPrompts,
-                      }
-                    : m
-                )
-              )
-              scrollToBottom()
-            }
+            scrollToBottom()
           }
         })
         streamSuccess = true
